@@ -85,6 +85,10 @@ public class Jeu extends AppCompatActivity {
 
     public void onRestart(View view)
     {
+
+        Intent broadcastIntent = new Intent();
+        broadcastIntent.setAction("RESTART_ACTION");
+        sendBroadcast(broadcastIntent);
         setupjeu();
     }
     public void onButton(View view)

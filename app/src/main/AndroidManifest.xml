@@ -21,7 +21,12 @@
             </intent-filter>
         </activity>
         <activity android:name=".ModeJeu" />
-        <activity android:name=".Jeu"></activity>
-        <service android:name=".BingoService"></service>
+        <activity android:name=".Jeu" />
+
+        <service android:name=".BingoService" />
+
+        <activity android:name=".Jeu2" />
+        <activity android:name=".Score"></activity>
     </application>
+
 </manifest>

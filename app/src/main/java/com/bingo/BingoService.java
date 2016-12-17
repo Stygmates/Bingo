@@ -1,11 +1,11 @@
 package com.bingo;
 
 import android.app.IntentService;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
+import android.content.IntentFilter;
 import android.util.Log;
-import android.widget.Toast;
 
 import java.util.Random;
 import java.util.Timer;
@@ -18,6 +18,7 @@ import java.util.TimerTask;
 public class BingoService extends IntentService {
     int []valeurPassees;
     int nbValeursPassees;
+    BroadcastReceiver receiver;
     public BingoService() {
         super("BingoService");
         valeurPassees = new int[100];
@@ -25,8 +26,18 @@ public class BingoService extends IntentService {
     }
 
     @Override
-    protected void onHandleIntent(Intent intent) {
+    protected void onHandleIntent(final Intent intent) {
         final Timer timer = new Timer();
+        IntentFilter filter = new IntentFilter();
+        filter.addAction("RESTART_ACTION");
+        receiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                valeurPassees = new int[100];
+                nbValeursPassees = 0;
+            }
+        };
+        registerReceiver(receiver,filter);
         final TimerTask task = new TimerTask() {
             @Override
             public void run() {
@@ -51,8 +62,8 @@ public class BingoService extends IntentService {
                     broadcastIntent.putExtra("number", -1);
                     Log.d("TOAST","PAS SUPPRIME");
                     sendBroadcast(broadcastIntent);
-                    //stopSelf();
                     timer.cancel();
+                    stopSelf();
                 }
             }
         };
@@ -61,7 +72,8 @@ public class BingoService extends IntentService {
 
     @Override
     public void onDestroy() {
-        super.onDestroy();
         Log.d("Toast3","WTF3");
+        unregisterReceiver(receiver);
+        super.onDestroy();
     }
 }
