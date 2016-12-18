@@ -5,6 +5,9 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.support.annotation.IntegerRes;
+import android.util.Log;
+import android.widget.Toast;
 
 import static android.os.Build.ID;
 
@@ -14,7 +17,7 @@ import static android.os.Build.ID;
 
 public class JoueurDB extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
     private static final String DATABASE_NAME = "JOUEUR.db";
     private static final String TABLE_JOUEUR = "joueur";
     private static final String COLUMN_ID = "id";
@@ -27,6 +30,7 @@ public class JoueurDB extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_JOUEUR);
         String query = "CREATE TABLE " + TABLE_JOUEUR + "(" +
                 COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 COLUMN_PSEUDO + " TEXT, " +
@@ -40,6 +44,7 @@ public class JoueurDB extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_JOUEUR);
         onCreate(sqLiteDatabase);
     }
+
 
     public void addJoueur(Joueur joueur)
     {
@@ -61,21 +66,28 @@ public class JoueurDB extends SQLiteOpenHelper {
     {
         SQLiteDatabase db = getWritableDatabase();
         db.execSQL("UPDATE TABLE " + TABLE_JOUEUR + " SET " + COLUMN_LIMCOIN + "WHERE " + COLUMN_PSEUDO + " =\"" + pseudo + "\"");
+        //db.execSQL("DROP TABLE IF EXISTS " + TABLE_JOUEUR);
     }
 
     public String toString()
     {
         String dbString = "";
         SQLiteDatabase sqLiteDatabase = getWritableDatabase();
-        String query = "SELECT * FROM " + TABLE_JOUEUR + " ORDER BY " + COLUMN_LIMCOIN;
+        String query = "SELECT " + COLUMN_ID + ", " + COLUMN_PSEUDO + ", " + COLUMN_LIMCOIN + " FROM " + TABLE_JOUEUR + " ORDER BY " + COLUMN_LIMCOIN;
         Cursor cursor = sqLiteDatabase.rawQuery(query, null);
         cursor.moveToFirst();
+        String[]tableauNoms = cursor.getColumnNames();
+        for(int i = 0; i < tableauNoms.length; i++) {
+            dbString +=tableauNoms[i] + " ";
+        }
+        dbString += "\n";
         while (!cursor.isAfterLast())
         {
             if((cursor.getString(cursor.getColumnIndex(COLUMN_PSEUDO))!= null))
             {
-                dbString += cursor.getString(cursor.getColumnIndex(COLUMN_PSEUDO)) + " ";
+                dbString += cursor.getString(1) + " " + cursor.getString(2)+ "\n";
             }
+            cursor.moveToNext();
         }
         sqLiteDatabase.close();
         return dbString;

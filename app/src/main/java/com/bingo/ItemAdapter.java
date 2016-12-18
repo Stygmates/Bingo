@@ -1,6 +1,7 @@
 package com.bingo;
 
 import android.content.Context;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -13,24 +14,30 @@ import android.widget.TextView;
 
 public class ItemAdapter extends BaseAdapter {
     private Context mContext;
-    private String[] nombres = {"1","2","3","4","5","6","7","8","9"};
+    private int []grille;
 
-    public ItemAdapter(Context c){
+    public ItemAdapter(Context c, int []grille){
         mContext = c;
+        this.grille = grille;
     }
     @Override
     public int getCount() {
-        return 0;
+        return grille.length;
+    }
+
+    public void setGrille(int[] grille)
+    {
+        this.grille = grille;
     }
 
     @Override
     public Object getItem(int i) {
-        return null;
+        return grille[i];
     }
 
     @Override
     public long getItemId(int i) {
-        return 0;
+        return i;
     }
 
     @Override
@@ -39,12 +46,14 @@ public class ItemAdapter extends BaseAdapter {
         if(convertView == null)
         {
             textView = new TextView(mContext);
+            textView.setHeight(200);
+            textView.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
         }
         else
         {
             textView = (TextView)convertView;
         }
-        textView.setText(nombres[position]);
+        textView.setText(Integer.toString(grille[position]));
         return textView;
     }
 }

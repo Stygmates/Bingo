@@ -24,8 +24,10 @@ public class MainActivity extends AppCompatActivity {
         //Intent intent = new Intent(this, Jeu.class);
         //startActivity(intent);
 
-        Intent score = new Intent(this, Score.class);
-        startActivity(score);
+        //Intent score = new Intent(this, Score.class);
+        //startActivity(score);
 
+        Intent jeu2 = new Intent(this, Jeu2.class);
+        startActivity(jeu2);
     }
 }

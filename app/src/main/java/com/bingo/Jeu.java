@@ -91,12 +91,10 @@ public class Jeu extends AppCompatActivity {
         sendBroadcast(broadcastIntent);
         setupjeu();
     }
-    public void onButton(View view)
-    {
-        Button button = (Button)findViewById(view.getId());
+    public void onButton(View view) {
+        Button button = (Button) findViewById(view.getId());
         boolean egal = false;
-        switch (view.getId())
-        {
+        switch (view.getId()) {
             case R.id.button1:
                 egal = nombre == grille.getGrille()[0];
                 break;
@@ -125,11 +123,10 @@ public class Jeu extends AppCompatActivity {
                 egal = nombre == grille.getGrille()[8];
                 break;
             default:
-                Toast.makeText(this,"Coucou",Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Coucou", Toast.LENGTH_SHORT).show();
                 break;
         }
-        if(egal)
-        {
+        if (egal) {
             button.setBackgroundColor(Color.BLUE);
         }
     }
