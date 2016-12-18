@@ -16,6 +16,7 @@ import java.util.TimerTask;
  */
 
 public class BingoService extends IntentService {
+    int niveau;
     int []valeurPassees;
     int nbValeursPassees;
     BroadcastReceiver receiver;
@@ -35,6 +36,7 @@ public class BingoService extends IntentService {
             public void onReceive(Context context, Intent intent) {
                 valeurPassees = new int[100];
                 nbValeursPassees = 0;
+                niveau = intent.getIntExtra("niveau", -1);
             }
         };
         registerReceiver(receiver,filter);
@@ -67,7 +69,7 @@ public class BingoService extends IntentService {
                 }
             }
         };
-        timer.schedule(task, 01,50);
+        timer.schedule(task, 01,1000-100*niveau);
     }
 
     @Override

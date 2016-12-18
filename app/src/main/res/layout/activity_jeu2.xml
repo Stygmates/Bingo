@@ -27,28 +27,28 @@
                 android:text="Niveau:"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/textView2"
+                android:id="@+id/niveauText"
                 android:layout_weight="1" />
 
             <TextView
                 android:text="0"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/textView3"
+                android:id="@+id/niveau"
                 android:layout_weight="1" />
 
             <TextView
                 android:text="Limcoins:"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/textView4"
+                android:id="@+id/limCoinText"
                 android:layout_weight="1" />
 
             <TextView
                 android:text="500"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/textView5"
+                android:id="@+id/limcoin"
                 android:layout_weight="1" />
         </LinearLayout>
         <View
