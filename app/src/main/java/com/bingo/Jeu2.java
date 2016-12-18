@@ -114,6 +114,9 @@ public class Jeu2 extends AppCompatActivity {
 
     public void onNewGridButton(View view)
     {
+        Intent broadcastIntent = new Intent();
+        broadcastIntent.setAction("RESTART_ACTION");
+        sendBroadcast(broadcastIntent);
         this.joueur.setLimcoin(this.joueur.getLimcoin() - 250);
         Intent intent = new Intent(this, Jeu2.class);
         intent.putExtra("joueur",this.joueur);
@@ -123,6 +126,9 @@ public class Jeu2 extends AppCompatActivity {
 
     public void onNextlvlButton(View view)
     {
+        Intent broadcastIntent = new Intent();
+        broadcastIntent.setAction("RESTART_ACTION");
+        sendBroadcast(broadcastIntent);
         joueur.setLimcoin(joueur.getLimcoin() + 500);
         Intent intent = new Intent(this, Jeu2.class);
         intent.putExtra("joueur",this.joueur);
@@ -133,14 +139,20 @@ public class Jeu2 extends AppCompatActivity {
     public void onScoreButton(View view)
     {
         joueurScoreDB.addJoueur(joueur,this.niveau);
+        Intent broadcastIntent = new Intent();
+        broadcastIntent.setAction("RESTART_ACTION");
+        sendBroadcast(broadcastIntent);
         Intent scoreIntent = new Intent(this,Score.class);
         startActivity(scoreIntent);
     }
 
     public void onRestartButton(View view)
     {
-        joueur.setLimcoin(500);
         joueurScoreDB.addJoueur(joueur,this.niveau);
+        joueur.setLimcoin(500);
+        Intent broadcastIntent = new Intent();
+        broadcastIntent.setAction("RESTART_ACTION");
+        sendBroadcast(broadcastIntent);
         Intent intent = new Intent(this, Jeu2.class);
         intent.putExtra("joueur", joueur);
         intent.putExtra("niveau",niveau);
