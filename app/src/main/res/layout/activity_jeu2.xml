@@ -80,7 +80,7 @@
                 android:onClick="onRestartButton" />
 
             <Button
-                android:text="Achter grille"
+                android:text="Acheter grille"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/newGridButton"
@@ -94,7 +94,10 @@
                 android:id="@+id/NextlvlButton"
                 android:layout_weight="1"
                 android:visibility="visible"
-                android:onClick="onNextlvlButton" />
+                android:onClick="onNextlvlButton"
+                android:clickable="false"
+                android:linksClickable="false"
+                android:enabled="false" />
 
         </LinearLayout>
 

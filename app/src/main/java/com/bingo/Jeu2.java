@@ -105,7 +105,7 @@ public class Jeu2 extends AppCompatActivity {
                         }
                     }
                     if (!perdu) {
-                        buttonNextlvl.setVisibility(View.VISIBLE);
+                        buttonNextlvl.setEnabled(true);
                     }
                 }
             }
