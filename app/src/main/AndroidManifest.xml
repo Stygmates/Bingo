@@ -25,7 +25,9 @@
 
         <service android:name=".BingoService" />
 
-        <activity android:name=".Jeu2" />
+        <activity android:name=".Jeu2"
+            android:noHistory="true"
+            />
         <activity android:name=".Score"></activity>
     </application>
 

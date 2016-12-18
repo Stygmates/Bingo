@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
         //startActivity(score);
 
         Intent jeu2 = new Intent(this, Jeu2.class);
+        jeu2.putExtra("joueur",joueur);
         startActivity(jeu2);
     }
 }

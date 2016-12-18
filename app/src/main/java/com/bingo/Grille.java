@@ -14,11 +14,19 @@ public class Grille implements Parcelable {
 
     public Grille()
     {
+        int []validees = new int[100];
         grille = new int[9];
         Random random = new Random();
+        int nombre;
         for(int i = 0; i < 9; i++)
         {
-            grille[i] = random.nextInt(100);
+            nombre = random.nextInt(100);
+            while(validees[nombre] == 1)
+            {
+                nombre = random.nextInt(100);
+            }
+            grille[i] = nombre;
+            validees[nombre] = 1;
         }
     }
     public int[] getGrille() {

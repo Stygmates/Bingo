@@ -12,8 +12,8 @@ public class Score extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_score);
-        JoueurDB joueurDB = new JoueurDB(this,null,null,1);
+        JoueurScoreDB joueurScoreDB = new JoueurScoreDB(this,null,null,1);
         TextView textview = (TextView)findViewById(R.id.textViewScore);
-        textview.setText(joueurDB.toString());
+        textview.setText(joueurScoreDB.toString());
     }
 }

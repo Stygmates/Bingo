@@ -15,7 +15,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true">
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/nombretire">
 
         <LinearLayout
             android:orientation="horizontal"
@@ -51,6 +52,7 @@
                 android:id="@+id/limcoin"
                 android:layout_weight="1" />
         </LinearLayout>
+
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
@@ -58,11 +60,51 @@
 
         <GridView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="244dp"
             android:id="@+id/gridview"
             android:numColumns="3"
             android:padding="10dp"
             android:layout_marginTop="50dp"/>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:text="Recommencer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/RecommencerButton"
+                android:layout_weight="1"
+                android:onClick="onRestartButton" />
+
+            <Button
+                android:text="Achter grille"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/newGridButton"
+                android:layout_weight="1"
+                android:onClick="onNewGridButton" />
+
+            <Button
+                android:text="Next level"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/NextlvlButton"
+                android:layout_weight="1"
+                android:visibility="visible"
+                android:onClick="onNextlvlButton" />
+
+        </LinearLayout>
+
+        <Button
+            android:text="Scores"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/ScoreButton"
+            android:layout_weight="1"
+            android:onClick="onScoreButton" />
 
     </LinearLayout>
 
