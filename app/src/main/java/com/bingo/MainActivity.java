@@ -31,4 +31,9 @@ public class MainActivity extends AppCompatActivity {
         jeu2.putExtra("joueur",joueur);
         startActivity(jeu2);
     }
+    public void onButtonScore(View view)
+    {
+        Intent score = new Intent(this, Score.class);
+        startActivity(score);
+    }
 }

@@ -95,7 +95,7 @@ public class JoueurScoreDB extends SQLiteOpenHelper {
         ArrayList<JoueurScore> liste = new ArrayList<>();
         String dbString = "";
         SQLiteDatabase sqLiteDatabase = getWritableDatabase();
-        String query = "SELECT " + COLUMN_ID + ", " + COLUMN_PSEUDO + ", " + COLUMN_NIVEAU + " FROM " + TABLE_JOUEURSCORE + " ORDER BY " + COLUMN_NIVEAU;
+        String query = "SELECT " + COLUMN_ID + ", " + COLUMN_PSEUDO + ", " + COLUMN_NIVEAU + " FROM " + TABLE_JOUEURSCORE + " ORDER BY " + COLUMN_NIVEAU + " DESC";
         Cursor cursor = sqLiteDatabase.rawQuery(query, null);
         cursor.moveToFirst();
         while (!cursor.isAfterLast())
