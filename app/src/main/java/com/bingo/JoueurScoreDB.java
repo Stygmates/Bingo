@@ -6,6 +6,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.util.ArrayList;
+
 /**
  * Created by tit-a on 16/12/2016.
  */
@@ -86,5 +88,27 @@ public class JoueurScoreDB extends SQLiteOpenHelper {
         }
         sqLiteDatabase.close();
         return dbString;
+    }
+
+    public ArrayList<JoueurScore> tableauScore()
+    {
+        ArrayList<JoueurScore> liste = new ArrayList<>();
+        String dbString = "";
+        SQLiteDatabase sqLiteDatabase = getWritableDatabase();
+        String query = "SELECT " + COLUMN_ID + ", " + COLUMN_PSEUDO + ", " + COLUMN_NIVEAU + " FROM " + TABLE_JOUEURSCORE + " ORDER BY " + COLUMN_NIVEAU;
+        Cursor cursor = sqLiteDatabase.rawQuery(query, null);
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast())
+        {
+            if((cursor.getString(cursor.getColumnIndex(COLUMN_PSEUDO))!= null))
+            {
+                JoueurScore joueurScore = new JoueurScore(cursor.getString(1), cursor.getInt(2));
+                liste.add(joueurScore);
+                dbString += cursor.getString(1) + " " + cursor.getString(2)+ "\n";
+            }
+            cursor.moveToNext();
+        }
+        sqLiteDatabase.close();
+        return liste;
     }
 }

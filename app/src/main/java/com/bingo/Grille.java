@@ -18,7 +18,7 @@ public class Grille implements Parcelable {
         grille = new int[9];
         Random random = new Random();
         int nombre;
-        for(int i = 0; i < 9; i++)
+        for(int i = 1; i < 9; i++)
         {
             nombre = random.nextInt(100);
             while(validees[nombre] == 1)
