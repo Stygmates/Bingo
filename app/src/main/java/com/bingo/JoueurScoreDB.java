@@ -72,7 +72,7 @@ public class JoueurScoreDB extends SQLiteOpenHelper {
         Cursor cursor = sqLiteDatabase.rawQuery(query, null);
         cursor.moveToFirst();
         String[]tableauNoms = cursor.getColumnNames();
-        for(int i = 0; i < tableauNoms.length; i++) {
+        for(int i = 1; i < tableauNoms.length; i++) {
             dbString +=tableauNoms[i] + " ";
         }
         dbString += "\n";

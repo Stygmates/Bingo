@@ -35,7 +35,7 @@ public class Jeu2 extends AppCompatActivity {
         validees = new int[9];
 
         //Listener sur le nombre aléatoire courant
-        final TextView textView = (TextView)this.findViewById(R.id.nombretire);
+        final TextView textView = (TextView)this.findViewById(R.id.number);
         IntentFilter filter = new IntentFilter();
         filter.addAction("NUMBER_ACTION");
         final BroadcastReceiver receiver = new BroadcastReceiver() {
@@ -75,7 +75,7 @@ public class Jeu2 extends AppCompatActivity {
         {
             buttonNewGrid.setEnabled(false);
         }
-        this.niveau = this.getIntent().getIntExtra("lvl", 1);
+        this.niveau = this.getIntent().getIntExtra("niveau", 1);
         tvNiveau.setText(Integer.toString(this.niveau));
         this.nombre = -1;
         if(this.joueur != null)

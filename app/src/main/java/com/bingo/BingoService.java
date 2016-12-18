@@ -20,6 +20,7 @@ public class BingoService extends IntentService {
     int []valeurPassees;
     int nbValeursPassees;
     BroadcastReceiver receiver;
+    boolean end = false;
     public BingoService() {
         super("BingoService");
         valeurPassees = new int[100];
@@ -34,38 +35,39 @@ public class BingoService extends IntentService {
         receiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-                valeurPassees = new int[100];
-                nbValeursPassees = 0;
-                niveau = intent.getIntExtra("niveau", -1);
+                //valeurPassees = new int[100];
+                //nbValeursPassees = 0;
+                //niveau = intent.getIntExtra("niveau", -1);
+                end = true;
             }
         };
         registerReceiver(receiver,filter);
         final TimerTask task = new TimerTask() {
             @Override
             public void run() {
-                Intent broadcastIntent = new Intent();
-                Random random = new Random();
-                if(nbValeursPassees < 100) {
-                    int nombre = random.nextInt(100);
-                    while (valeurPassees[nombre] == 1) {
-                        nombre = random.nextInt(100);
-                    }
-                    valeurPassees[nombre] = 1;
-                    nbValeursPassees++;
-                    broadcastIntent.setAction("NUMBER_ACTION");
-                    broadcastIntent.putExtra("number", nombre);
-                    sendBroadcast(broadcastIntent);
-                    Log.d("Nombrevaleurs",Integer.toString(nbValeursPassees));
+                if(end != true) {
+                    Intent broadcastIntent = new Intent();
+                    Random random = new Random();
+                    if (nbValeursPassees < 100) {
+                        int nombre = random.nextInt(100);
+                        while (valeurPassees[nombre] == 1) {
+                            nombre = random.nextInt(100);
+                        }
+                        valeurPassees[nombre] = 1;
+                        nbValeursPassees++;
+                        broadcastIntent.setAction("NUMBER_ACTION");
+                        broadcastIntent.putExtra("number", nombre);
+                        sendBroadcast(broadcastIntent);
+                        Log.d("Nombrevaleurs", Integer.toString(nbValeursPassees));
 
-                }
-                else if(nbValeursPassees == 100)
-                {
-                    broadcastIntent.setAction("NUMBER_ACTION");
-                    broadcastIntent.putExtra("number", -1);
-                    Log.d("TOAST","PAS SUPPRIME");
-                    sendBroadcast(broadcastIntent);
-                    timer.cancel();
-                    stopSelf();
+                    } else if (nbValeursPassees == 100) {
+                        broadcastIntent.setAction("NUMBER_ACTION");
+                        broadcastIntent.putExtra("number", -1);
+                        Log.d("TOAST", "PAS SUPPRIME");
+                        sendBroadcast(broadcastIntent);
+                        timer.cancel();
+                        stopSelf();
+                    }
                 }
             }
         };
